@@ -5,15 +5,11 @@ PKG     := .
 GOFLAGS := -trimpath
 LDFLAGS := -s -w
 
-PLATFORMS_ALL   := linux/amd64 linux/arm64 darwin/amd64 darwin/arm64 windows/amd64
-PLATFORMS_AMD64 := linux/amd64 darwin/amd64 windows/amd64
+PLATFORMS := linux/amd64 linux/arm64 darwin/amd64 darwin/arm64 windows/amd64
 
-.PHONY: all amd64
+.PHONY: all
 
-all:   PLATFORMS := $(PLATFORMS_ALL)
-amd64: PLATFORMS := $(PLATFORMS_AMD64)
-
-all amd64:
+all:
 	@mkdir -p $(DIST)
 	@for p in $(PLATFORMS); do \
 		os=$${p%/*}; arch=$${p#*/}; \
